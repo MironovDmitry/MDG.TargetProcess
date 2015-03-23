@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TargetProcess.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="tpAPIURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://targetprocess.aemedia.ru/TargetProcess2/api/v1/</Value>
+    </Setting>
+    <Setting Name="tpToken" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Token=MjU6Qjg0REU3MTY0OUQ4RDEyRTBGM0U5Qjg2ODlDNTUzNDE=</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
