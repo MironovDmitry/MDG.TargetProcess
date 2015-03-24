@@ -63,9 +63,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TargetProcess\TargetProcess.csproj">
+    <ProjectReference Include="..\TargetProcess\MDG.TargetProcess.csproj">
       <Project>{e96c393b-0569-4467-b77f-105987f8c93e}</Project>
-      <Name>TargetProcess</Name>
+      <Name>MDG.TargetProcess</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
