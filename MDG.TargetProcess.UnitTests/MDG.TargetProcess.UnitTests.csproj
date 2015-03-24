@@ -63,7 +63,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TargetProcess\MDG.TargetProcess.csproj">
+    <ProjectReference Include="..\MDG.TargetProcess\MDG.TargetProcess.csproj">
       <Project>{e96c393b-0569-4467-b77f-105987f8c93e}</Project>
       <Name>MDG.TargetProcess</Name>
     </ProjectReference>
