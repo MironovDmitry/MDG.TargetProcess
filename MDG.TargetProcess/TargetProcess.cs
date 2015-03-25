@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -15,8 +16,18 @@ namespace MDG.TargetProcess
         readonly static string _apiURL = Properties.Settings.Default.tpAPIURL;
         readonly static string _token = Properties.Settings.Default.tpToken;
 
-        public List<User> Developers { get; set; }
+        private ITPWebServiceClient _webClient;
 
+        public TP()
+        {            
+        }
+
+        public ITPWebServiceClient TPWebServiceClient
+        {
+            get { return _webClient;}
+            set { _webClient = value; }
+        }
+                
         public Uri BuildUri(URIOptions uriOptions)
         {
             StringBuilder uri = new StringBuilder(_apiURL);
@@ -46,42 +57,50 @@ namespace MDG.TargetProcess
             return new Uri(uri.ToString());
         }
 
-        public string GetResponseFromWebService(Uri uri)
+        public Users GetUsers(URIOptions uriOptions)
         {
-            using (WebClient webClient = new WebClient())
-            {
-                webClient.Encoding = Encoding.UTF8;
-                webClient.Headers["Content-Type"] = "application/json; charset=UTF-8";
+            Uri uri = BuildUri(uriOptions);
+                        
+            string response = _webClient.GetResponse(uri);
 
-                return webClient.DownloadString(uri);
-            }
+            //List<User> users = JsonConvert.DeserializeObject<List<User>>(response);
+            Users users = GetObjects<Users>(response);
+            return users;
         }
 
-        public void GetDevelopers()
+        public T GetObjects<T>(string jsonString) where T : new()
+        {
+            T objects = new T();
+            objects = JsonConvert.DeserializeObject<T>(jsonString);            
+            return objects;
+        }
+
+        public Users GetDevelopers()
         {
             URIOptions uriOptions = new URIOptions();
             uriOptions.EntityType = "users";
             uriOptions.IncludeStatement = "[id,FirstName,LastName]";
             uriOptions.WhereStatement = "(IsActive eq 'true') and (role.id eq 1)";
 
-            Uri uri = BuildUri(uriOptions);
+            return GetUsers(uriOptions);
+            //Uri uri = BuildUri(uriOptions);
 
-            string jsonResult = GetResponseFromWebService(uri);
-            dynamic result = JsonConvert.DeserializeObject(jsonResult);
+            //string jsonResult = GetResponseFromWebService(uri);
+            //dynamic result = JsonConvert.DeserializeObject(jsonResult);
 
-            List<User> developers = new List<User>();
-            foreach (var item in result.Items)
-            {
-                User developer = new User();
-                developer.Id = item.Id;
-                developer.LastName = item.LastName;
-                developer.FirstName = item.FirstName;
+            //List<User> developers = new List<User>();
+            //foreach (var item in result.Items)
+            //{
+            //    User developer = new User();
+            //    developer.Id = item.Id;
+            //    developer.LastName = item.LastName;
+            //    developer.FirstName = item.FirstName;
 
-                developers.Add(developer);
-                developer = null;
-            }
+            //    developers.Add(developer);
+            //    developer = null;
+            //}
 
-            this.Developers = developers;
+            //this.Developers = developers;
         }
 
         public void GetUserStoriesForUser(int userID)
@@ -98,6 +117,6 @@ namespace MDG.TargetProcess
         public string EntityType { get; set; }
         public string IncludeStatement { get; set; }
         public string WhereStatement { get; set; }
-    }
-
+    }          
+    
 }

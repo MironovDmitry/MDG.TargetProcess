@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ITPWebServiceClient.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -53,6 +54,7 @@
     </Compile>
     <Compile Include="TargetProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TPWebServiceClient.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
