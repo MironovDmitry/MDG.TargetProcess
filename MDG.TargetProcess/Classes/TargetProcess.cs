@@ -26,43 +26,26 @@ namespace MDG.TargetProcess
         }
         
 
-        public Users GetUsers(URIOptions uriOptions)
+        public Users GetUsers()
         {
-            Uri uri = uriOptions.BuildUri();
-                        
-            string response = _webClient.GetResponse(uri);
+            return getUsersByUriOption(new URIOptions());
+        }
 
-            //List<User> users = JsonConvert.DeserializeObject<List<User>>(response);
-            Users users = ObjectsConverter.GetObjects<Users>(response);
-            return users;
+        private Users getUsersByUriOption(URIOptions uriOptions)
+        {
+            uriOptions.EntityType = "users";
+            Uri uri = uriOptions.BuildUri();
+
+            return ObjectsConverter.GetObjects<Users>(_webClient.GetResponse(uri));
         }
 
         public Users GetDevelopers()
         {
-            URIOptions uriOptions = new URIOptions();
-            uriOptions.EntityType = "users";
+            URIOptions uriOptions = new URIOptions();            
             uriOptions.IncludeStatement = "[id,FirstName,LastName]";
             uriOptions.WhereStatement = "(IsActive eq 'true') and (role.id eq 1)";
 
-            return GetUsers(uriOptions);
-            //Uri uri = BuildUri(uriOptions);
-
-            //string jsonResult = GetResponseFromWebService(uri);
-            //dynamic result = JsonConvert.DeserializeObject(jsonResult);
-
-            //List<User> developers = new List<User>();
-            //foreach (var item in result.Items)
-            //{
-            //    User developer = new User();
-            //    developer.Id = item.Id;
-            //    developer.LastName = item.LastName;
-            //    developer.FirstName = item.FirstName;
-
-            //    developers.Add(developer);
-            //    developer = null;
-            //}
-
-            //this.Developers = developers;
+            return getUsersByUriOption(uriOptions);
         }
 
         public UserStories GetUserStories()
