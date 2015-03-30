@@ -65,14 +65,9 @@ namespace MDG.TargetProcess
             //this.Developers = developers;
         }
 
-        public UserStories GetUserStories(URIOptions uriOptions)
+        public UserStories GetUserStories()
         {
-            uriOptions.EntityType = "userstories";
-            Uri uri = uriOptions.BuildUri();
-
-            string response = _webClient.GetResponse(uri);
-            UserStories userStories = ObjectsConverter.GetObjects<UserStories>(response);
-            return userStories;
+            return GetUserStoriesByUriOptions(new URIOptions());
         }
 
         public UserStories GetUserStoriesForUser(int userID)
@@ -80,7 +75,15 @@ namespace MDG.TargetProcess
             URIOptions uriOptions = new URIOptions();            
             uriOptions.WhereStatement = "(Owner.Id eq " + userID.ToString() + ")";
 
-            return GetUserStories(uriOptions);
+            return GetUserStoriesByUriOptions(uriOptions);
+        }
+
+        private UserStories GetUserStoriesByUriOptions(URIOptions uriOptions)
+        {
+            uriOptions.EntityType = "userstories";
+            Uri uri = uriOptions.BuildUri();
+                        
+            return ObjectsConverter.GetObjects<UserStories>(_webClient.GetResponse(uri);)
         }
 
         public Bugs GetBugs()
