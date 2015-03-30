@@ -70,7 +70,7 @@ namespace MDG.TargetProcess
             return getUserStoriesByUriOptions(new URIOptions());
         }
 
-        public UserStories GetUserStoriesForUser(int userID)
+        public UserStories GetUserStories(int userID)
         {
             URIOptions uriOptions = new URIOptions();            
             uriOptions.WhereStatement = "(Owner.Id eq " + userID.ToString() + ")";
@@ -91,7 +91,7 @@ namespace MDG.TargetProcess
             return getBugsByUriOptions(new URIOptions());
         }
 
-        public Bugs GetBugsForUser(int userID)
+        public Bugs GetBugs(int userID)
         {
             URIOptions uriOptions = new URIOptions();
             uriOptions.WhereStatement = "(Owner.Id eq " + userID.ToString() + ")";
