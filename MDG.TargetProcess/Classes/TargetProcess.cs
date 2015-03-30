@@ -67,7 +67,7 @@ namespace MDG.TargetProcess
 
         public UserStories GetUserStories()
         {
-            return GetUserStoriesByUriOptions(new URIOptions());
+            return getUserStoriesByUriOptions(new URIOptions());
         }
 
         public UserStories GetUserStoriesForUser(int userID)
@@ -75,10 +75,10 @@ namespace MDG.TargetProcess
             URIOptions uriOptions = new URIOptions();            
             uriOptions.WhereStatement = "(Owner.Id eq " + userID.ToString() + ")";
 
-            return GetUserStoriesByUriOptions(uriOptions);
+            return getUserStoriesByUriOptions(uriOptions);
         }
 
-        private UserStories GetUserStoriesByUriOptions(URIOptions uriOptions)
+        private UserStories getUserStoriesByUriOptions(URIOptions uriOptions)
         {
             uriOptions.EntityType = "userstories";
             Uri uri = uriOptions.BuildUri();
@@ -88,7 +88,7 @@ namespace MDG.TargetProcess
 
         public Bugs GetBugs()
         {
-            return GetBugsByUriOptions(new URIOptions());
+            return getBugsByUriOptions(new URIOptions());
         }
 
         public Bugs GetBugsForUser(int userID)
@@ -96,16 +96,17 @@ namespace MDG.TargetProcess
             URIOptions uriOptions = new URIOptions();
             uriOptions.WhereStatement = "(Owner.Id eq " + userID.ToString() + ")";
 
-            return GetBugsByUriOptions(uriOptions);
+            return getBugsByUriOptions(uriOptions);
         }
 
-        private Bugs GetBugsByUriOptions(URIOptions uriOptions)
+        private Bugs getBugsByUriOptions(URIOptions uriOptions)
         {
             uriOptions.EntityType = "bugs";
             Uri uri = uriOptions.BuildUri();
 
             return ObjectsConverter.GetObjects<Bugs>(_webClient.GetResponse(uri));
         }
+        
         public void AssignDeveloper()
         {
             throw new NotImplementedException();
