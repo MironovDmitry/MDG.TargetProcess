@@ -67,7 +67,7 @@ namespace MDG.TargetProcess
 
         public UserStories GetUserStories()
         {
-            return getUserStoriesByUriOptions(new URIOptions());
+            return GetUserStoriesByUriOptions(new URIOptions());
         }
 
         public UserStories GetUserStoriesForUser(int userID)
@@ -75,10 +75,10 @@ namespace MDG.TargetProcess
             URIOptions uriOptions = new URIOptions();            
             uriOptions.WhereStatement = "(Owner.Id eq " + userID.ToString() + ")";
 
-            return getUserStoriesByUriOptions(uriOptions);
+            return GetUserStoriesByUriOptions(uriOptions);
         }
 
-        private UserStories getUserStoriesByUriOptions(URIOptions uriOptions)
+        private UserStories GetUserStoriesByUriOptions(URIOptions uriOptions)
         {
             uriOptions.EntityType = "userstories";
             Uri uri = uriOptions.BuildUri();
@@ -88,7 +88,7 @@ namespace MDG.TargetProcess
 
         public Bugs GetBugs()
         {
-            return getBugsByUriOptions(new URIOptions());
+            return GetBugsByUriOptions(new URIOptions());
         }
 
         public Bugs GetBugsForUser(int userID)
@@ -96,10 +96,10 @@ namespace MDG.TargetProcess
             URIOptions uriOptions = new URIOptions();
             uriOptions.WhereStatement = "(Owner.Id eq " + userID.ToString() + ")";
 
-            return getBugsByUriOptions(uriOptions);
+            return GetBugsByUriOptions(uriOptions);
         }
 
-        private Bugs getBugsByUriOptions(URIOptions uriOptions)
+        private Bugs GetBugsByUriOptions(URIOptions uriOptions)
         {
             uriOptions.EntityType = "bugs";
             Uri uri = uriOptions.BuildUri();
