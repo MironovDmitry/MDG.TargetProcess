@@ -27,8 +27,7 @@ namespace MDG.TargetProcess
         public Process Process { get; set; }
         public EntityType EntityType { get; set; }
         public Owner Owner { get; set; }
-        public object LastCommentedUser { get; set; }
-        public object Project { get; set; }
+        public object LastCommentedUser { get; set; }        
         public Program Program { get; set; }
         public Company Company { get; set; }
         public object LinkedTestPlan { get; set; }

@@ -65,8 +65,8 @@ namespace MDG.TargetProcess
         {
             uriOptions.EntityType = "userstories";
             Uri uri = uriOptions.BuildUri();
-                        
-            return ObjectsConverter.GetObjects<UserStories>(_webClient.GetResponse(uri);)
+
+            return ObjectsConverter.GetObjects<UserStories>(_webClient.GetResponse(uri));
         }
 
         public Bugs GetBugs()

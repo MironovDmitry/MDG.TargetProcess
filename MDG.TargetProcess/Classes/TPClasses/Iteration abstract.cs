@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MDG.TargetProcess
 {
-    abstract class Iteration_abstract
+    public abstract class Iteration_abstract
     {
         public int Id { get; set; }
         public string Name { get; set; }

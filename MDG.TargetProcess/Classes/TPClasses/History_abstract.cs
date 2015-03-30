@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MDG.TargetProcess
 {
-    abstract class History
+    public abstract class History
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }

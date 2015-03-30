@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MDG.TargetProcess
 {
-    abstract class EntityType
+    public abstract class EntityType
     {
         public int Id { get; set; }
         public string Name { get; set; }
