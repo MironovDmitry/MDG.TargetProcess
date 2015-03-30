@@ -65,14 +65,24 @@ namespace MDG.TargetProcess
             //this.Developers = developers;
         }
 
-        
-
-        public void GetUserStoriesForUser(int userID)
+        public UserStories GetUserStories(URIOptions uriOptions)
         {
-            URIOptions uriOptions = new URIOptions();
             uriOptions.EntityType = "userstories";
-            uriOptions.WhereStatement = "(Owner.Id eq " + userID.ToString() + ")";
+            Uri uri = uriOptions.BuildUri();
+
+            string response = _webClient.GetResponse(uri);
+            UserStories userStories = ObjectsConverter.GetObjects<UserStories>(response);
+            return userStories;
         }
+
+        public UserStories GetUserStoriesForUser(int userID)
+        {
+            URIOptions uriOptions = new URIOptions();            
+            uriOptions.WhereStatement = "(Owner.Id eq " + userID.ToString() + ")";
+
+            return GetUserStories(uriOptions);
+        }
+
 
         public void AssignDeveloper()
         {
