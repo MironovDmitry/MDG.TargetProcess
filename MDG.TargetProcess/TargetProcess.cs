@@ -13,9 +13,6 @@ namespace MDG.TargetProcess
 {
     public class TP
     {
-        readonly static string _apiURL = Properties.Settings.Default.tpAPIURL;
-        readonly static string _token = Properties.Settings.Default.tpToken;
-
         private ITPWebServiceClient _webClient;
 
         public TP()
@@ -28,38 +25,11 @@ namespace MDG.TargetProcess
             set { _webClient = value; }
         }
                 
-        public Uri BuildUri(URIOptions uriOptions)
-        {
-            StringBuilder uri = new StringBuilder(_apiURL);
-            if (!String.IsNullOrEmpty(uriOptions.EntityType))
-            {
-                uri.Append(uriOptions.EntityType);
-            }
-            else
-            {
-                uri.Append("userstories");
-            }
-            uri.Append("?");
-            if (!String.IsNullOrEmpty(uriOptions.IncludeStatement))
-            {
-                uri.Append("include=");
-                uri.Append(uriOptions.IncludeStatement);
-                uri.Append("&");
-            }
-            if (!String.IsNullOrEmpty(uriOptions.WhereStatement))
-            {
-                uri.Append("where=");
-                uri.Append(uriOptions.WhereStatement);
-                uri.Append("&");
-            }
-            uri.Append(_token);
-
-            return new Uri(uri.ToString());
-        }
+        
 
         public Users GetUsers(URIOptions uriOptions)
         {
-            Uri uri = BuildUri(uriOptions);
+            Uri uri = uriOptions.BuildUri();
                         
             string response = _webClient.GetResponse(uri);
 
@@ -108,15 +78,65 @@ namespace MDG.TargetProcess
             URIOptions uriOptions = new URIOptions();
             uriOptions.EntityType = "userstories";
             uriOptions.WhereStatement = "(Owner.Id eq " + userID.ToString() + ")";
-        }        
+        }
+
+        public void AssignDeveloper()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AssignRequester()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AssignTeam()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddComment()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddRequest()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddUserStory()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddBug()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetDeveloperID(string developerName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetRequesterID(string requesterName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int getInitialEntityStateID(int projectID, string tpEntityType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveRequesters()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 
-    public class URIOptions
-    {
-        public string EntityType { get; set; }
-        public string IncludeStatement { get; set; }
-        public string WhereStatement { get; set; }
-    }          
+             
     
 }

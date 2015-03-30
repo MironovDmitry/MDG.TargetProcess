@@ -22,7 +22,7 @@ namespace TargetProcess.UnitTests
             TP tp = new TP();
             URIOptions uriOptions = new URIOptions();
             uriOptions.EntityType = "users";
-            Uri uri = tp.BuildUri(uriOptions);
+            Uri uri = uriOptions.BuildUri();
             tp.TPWebServiceClient = fakeTPWebServiceClient;
 
             tp.TPWebServiceClient.GetResponse(uri);
@@ -40,7 +40,7 @@ namespace TargetProcess.UnitTests
             uriOptions.EntityType = "users";
             uriOptions.IncludeStatement = "[id,FirstName,LastName]";
             uriOptions.WhereStatement = "(IsActive eq 'true') and (role.id eq 1)";
-            Uri uri = tp.BuildUri(uriOptions);
+            Uri uri = uriOptions.BuildUri();
             tp.TPWebServiceClient = fakeTPWebServiceClient;
 
             tp.TPWebServiceClient.GetResponse(uri);
