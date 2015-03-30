@@ -41,8 +41,7 @@ namespace MDG.TargetProcess
 
         public Users GetDevelopers()
         {
-            URIOptions uriOptions = new URIOptions();            
-            uriOptions.IncludeStatement = "[id,FirstName,LastName]";
+            URIOptions uriOptions = new URIOptions();                        
             uriOptions.WhereStatement = "(IsActive eq 'true') and (role.id eq 1)";
 
             return getUsersByUriOption(uriOptions);
