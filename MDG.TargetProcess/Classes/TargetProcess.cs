@@ -24,7 +24,6 @@ namespace MDG.TargetProcess
             get { return _webClient;}
             set { _webClient = value; }
         }
-                
         
 
         public Users GetUsers(URIOptions uriOptions)
@@ -37,8 +36,6 @@ namespace MDG.TargetProcess
             Users users = ObjectsConverter.GetObjects<Users>(response);
             return users;
         }
-
-        
 
         public Users GetDevelopers()
         {
@@ -67,6 +64,8 @@ namespace MDG.TargetProcess
 
             //this.Developers = developers;
         }
+
+        
 
         public void GetUserStoriesForUser(int userID)
         {
