@@ -83,7 +83,26 @@ namespace MDG.TargetProcess
             return GetUserStories(uriOptions);
         }
 
+        public Bugs GetBugs()
+        {
+            return GetBugsByUriOptions(new URIOptions());
+        }
 
+        public Bugs GetBugsForUser(int userID)
+        {
+            URIOptions uriOptions = new URIOptions();
+            uriOptions.WhereStatement = "(Owner.Id eq " + userID.ToString() + ")";
+
+            return GetBugsByUriOptions(uriOptions);
+        }
+
+        private Bugs GetBugsByUriOptions(URIOptions uriOptions)
+        {
+            uriOptions.EntityType = "bugs";
+            Uri uri = uriOptions.BuildUri();
+
+            return ObjectsConverter.GetObjects<Bugs>(_webClient.GetResponse(uri));
+        }
         public void AssignDeveloper()
         {
             throw new NotImplementedException();
