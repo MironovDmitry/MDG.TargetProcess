@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 using NUnit.Framework;
 
 using MDG.TargetProcess;
 
-namespace MDG.TargetProcess.UnitTests
+
+namespace TargetProcess.UnitTests
 {
     [TestFixture]
-    public class TargetProcessTests
+    class ObjectsConverterTests
     {
-
         #region Json strings for tests
         private string jsonSingleUser = "{\r\n  \"Items\": [\r\n    {\r\n      \"Kind\": \"User\",\r\n      \"Id\": 25,\r\n      \"FirstName\": \"Dmitry\",\r\n      \"LastName\": \"Mironov\",\r\n      \"Email\": \"Dmitry.Mironov@dentsuaegis.ru\",\r\n      \"Login\": \"Dmitry.Mironov@dentsuaegis.ru\",\r\n      \"CreateDate\": \"\\/Date(1389339540000+0400)\\/\",\r\n      \"ModifyDate\": \"\\/Date(1427265205000+0300)\\/\",\r\n      \"DeleteDate\": null,\r\n      \"IsActive\": true,\r\n      \"IsAdministrator\": true,\r\n      \"LastLoginDate\": \"\\/Date(1427230800000+0300)\\/\",\r\n      \"WeeklyAvailableHours\": 38.0000,\r\n      \"CurrentAllocation\": 100,\r\n      \"CurrentAvailableHours\": 0.0000,\r\n      \"AvailableFrom\": null,\r\n      \"AvailableFutureAllocation\": 0,\r\n      \"AvailableFutureHours\": 0.0000,\r\n      \"IsObserver\": false,\r\n      \"Skills\": null,\r\n      \"ActiveDirectoryName\": \"EMEA-MEDIA\\\\DMiron01\",\r\n      \"Role\": {\r\n        \"Id\": 7,\r\n        \"Name\": \"Project Manager\"\r\n      }\r\n    }\r\n  ]\r\n}";
 
@@ -18,26 +21,24 @@ namespace MDG.TargetProcess.UnitTests
 
         #endregion
 
-        
+
         #region GetObjects tests
         [Test]
         [Category("Json to object converter")]
         public void GetObjects_WhenRequestedUsers_ReturnUsers()
-        {   
-            TP tp = new TP();
+        {            
             Users actualObject = new Users();
-            actualObject = tp.GetObjects<Users>(this.jsonUsers);
-                     
-            Assert.IsInstanceOf<Users>(actualObject);            
-        }        
+            actualObject = ObjectsConverter.GetObjects<Users>(this.jsonUsers);
+
+            Assert.IsInstanceOf<Users>(actualObject);
+        }
 
         [Test]
         [Category("Json to object converter")]
         public void GetObjects_WhenRequestedUsersAndPassedJsonStringWithUsers_ReturnsItemsCountGreqterThanZero()
         {
-            TP tp = new TP();
             Users actualObject = new Users();
-            actualObject = tp.GetObjects<Users>(this.jsonUsers);
+            actualObject = ObjectsConverter.GetObjects<Users>(this.jsonUsers);
             int itemsCount = actualObject.Items.Count;
 
             Assert.Greater(itemsCount, 0);
@@ -47,9 +48,8 @@ namespace MDG.TargetProcess.UnitTests
         [Category("Json to object converter")]
         public void GetObjects_WhenRequestedUsersAndPassedJsonStringWithSingleUser_ReturnsItemsCountEqualsOne()
         {
-            TP tp = new TP();
             Users actualObject = new Users();
-            actualObject = tp.GetObjects<Users>(this.jsonSingleUser);
+            actualObject = ObjectsConverter.GetObjects<Users>(this.jsonSingleUser);
             int itemsCount = actualObject.Items.Count;
 
             Assert.AreEqual(1, itemsCount);
@@ -59,16 +59,15 @@ namespace MDG.TargetProcess.UnitTests
         [Category("Json to object converter")]
         public void GetObjects_WhenRequestedUsersAndPassedJsonStringWithSingleUserWithID25_ReturnsItemsCountEqualsOneAndIDEquals25()
         {
-            TP tp = new TP();
             Users actualObject = new Users();
-            actualObject = tp.GetObjects<Users>(this.jsonSingleUser);
+            actualObject = ObjectsConverter.GetObjects<Users>(this.jsonSingleUser);
             int itemsCount = actualObject.Items.Count;
             int actualID = actualObject.Items[0].Id;
 
             Assert.AreEqual(1, itemsCount);
             Assert.AreEqual(25, actualID);
         }
-        
+
         #endregion
     }
 }

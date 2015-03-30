@@ -34,16 +34,11 @@ namespace MDG.TargetProcess
             string response = _webClient.GetResponse(uri);
 
             //List<User> users = JsonConvert.DeserializeObject<List<User>>(response);
-            Users users = GetObjects<Users>(response);
+            Users users = ObjectsConverter.GetObjects<Users>(response);
             return users;
         }
 
-        public T GetObjects<T>(string jsonString) where T : new()
-        {
-            T objects = new T();
-            objects = JsonConvert.DeserializeObject<T>(jsonString);            
-            return objects;
-        }
+        
 
         public Users GetDevelopers()
         {
