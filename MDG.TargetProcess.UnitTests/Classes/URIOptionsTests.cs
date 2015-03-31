@@ -23,7 +23,7 @@ namespace TargetProcess.UnitTests
 
             Uri uri = uriOptions.BuildUri();
 
-            StringAssert.Contains("users?token=", uri.ToString().ToLower());
+            StringAssert.Contains("users?take=1000&token=", uri.ToString().ToLower());
 
         }
 
@@ -36,7 +36,7 @@ namespace TargetProcess.UnitTests
 
             Uri uri = uriOptions.BuildUri();
 
-            StringAssert.Contains("userstories?token=", uri.ToString().ToLower());
+            StringAssert.Contains("userstories?take=1000&token=", uri.ToString().ToLower());
         }
 
         [Test]

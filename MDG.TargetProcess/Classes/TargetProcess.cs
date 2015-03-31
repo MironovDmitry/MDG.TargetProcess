@@ -152,6 +152,15 @@ namespace MDG.TargetProcess
             return getUserStoryHistoriesByUriOptions(uriOptions);
         }
 
+        public UserStoryHistiories GetUserStoryHistories(int userStoryID, string statusName, DateTime startDate, DateTime endDate)
+        {
+            URIOptions uriOptions = new URIOptions();
+            uriOptions.EntityType = "UserStoryHistories";
+            uriOptions.WhereStatement = "(UserStory.Id eq " + userStoryID.ToString() + ") and (Date gte '" + startDate.ToString("yyyy-MM-dd") + "') and (Date lte '" + endDate.ToString("yyyy-MM-dd") + "') and (EntityState.Name eq '" + statusName + "')";
+
+            return getUserStoryHistoriesByUriOptions(uriOptions);
+        }
+
         #region Not implemented
         public void AssignDeveloper()
         {

@@ -87,7 +87,7 @@ namespace MDG.TargetProcess.IntegrationsTests.GetEntitiesTests
         [Test]
         [Category("Integration tests")]
         [Category("Read data")]
-        public void GetUserStoryHistories_CalledForUserStoryID31390AndPeriod20150326To20150327_ReturnsUserStoryHistoriesOnlyForUserStoryID31390AndPeriod20150326To20150327()
+        public void GetUserStoryHistories_CalledForUserStoryID31390AndPeriod20150326To20150327_ReturnsUserStoryHistoriesOnlyForUserStoryID31390And20150327()
         {
             TP tp = new TP();
             tp.TPWebServiceClient = new TPWebServiceClient();
@@ -98,9 +98,27 @@ namespace MDG.TargetProcess.IntegrationsTests.GetEntitiesTests
             UserStoryHistiories histories = tp.GetUserStoryHistories(31390, startDate, endDate);
 
             Assert.That(histories.Items, Has.All.Matches<UserStoryHistiory>(h => h.UserStory.Id == 31390));
-            Assert.That(histories.Items, Has.All.Not.Matches<UserStoryHistiory>(h => h.Date.Date == testDate1.Date));
-            //Assert.That(histories.Items, Has.Some.Matches<UserStoryHistiory>(h => h.Date.Date == startDate.Date));
+            Assert.That(histories.Items, Has.All.Not.Matches<UserStoryHistiory>(h => h.Date.Date == testDate1.Date));            
             Assert.That(histories.Items, Has.Some.Matches<UserStoryHistiory>(h => h.Date.Date == endDate.Date));
+        }
+
+        [Test]
+        [Category("Integration tests")]
+        [Category("Read data")]
+        public void GetUserStoryHistories_CalledForUserStoryID31390AndPeriod20150326To20150327AndStatusUAT_ReturnsUserStoryHistoriesOnlyForUserStoryID31390And20150327AndStatusUAT()
+        {
+            TP tp = new TP();
+            tp.TPWebServiceClient = new TPWebServiceClient();
+            DateTime startDate = new DateTime(2015, 3, 26);
+            DateTime endDate = new DateTime(2015, 3, 27);
+            DateTime testDate1 = new DateTime(2015, 3, 25);            
+
+            UserStoryHistiories histories = tp.GetUserStoryHistories(31390, "User Acceptance testing", startDate, endDate);
+
+            Assert.That(histories.Items, Has.All.Matches<UserStoryHistiory>(h => h.UserStory.Id == 31390));
+            Assert.That(histories.Items, Has.All.Not.Matches<UserStoryHistiory>(h => h.Date.Date == testDate1.Date));            
+            Assert.That(histories.Items, Has.Some.Matches<UserStoryHistiory>(h => h.Date.Date == endDate.Date));
+            Assert.That(histories.Items, Has.All.Matches<UserStoryHistiory>(h => h.EntityState.Name.ToLower() == "user acceptance testing"));
         }
     }
 }
