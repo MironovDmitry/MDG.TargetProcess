@@ -54,7 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="GetEntitiesTests\GetDevelopers_IT.cs" />
-    <Compile Include="GetEntitiesTests\GetUserStoryHistory.cs" />
+    <Compile Include="GetEntitiesTests\GetUserStoryHistory_IT.cs" />
     <Compile Include="GetEntitiesTests\GetUsers_IT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

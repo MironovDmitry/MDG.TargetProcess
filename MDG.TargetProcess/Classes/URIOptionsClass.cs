@@ -39,6 +39,7 @@ namespace MDG.TargetProcess
                 uri.Append(this.WhereStatement);
                 uri.Append("&");
             }
+            uri.Append("take=1000&");
             uri.Append(_token);
 
             return new Uri(uri.ToString());

@@ -120,7 +120,11 @@ namespace MDG.TargetProcess
 
         public UserStoryHistiories GetUserStoryHistories(int userStoryID, string statusName)
         {
-            throw new NotImplementedException();
+            URIOptions uriOptions = new URIOptions();
+            uriOptions.EntityType = "UserStoryHistories";
+            uriOptions.WhereStatement = "(UserStory.Id eq " + userStoryID.ToString() + ") and (EntityState.Name eq '" + statusName + "')";
+
+            return getUserStoryHistoriesByUriOptions(uriOptions);
         }
 
         private UserStoryHistiories getUserStoryHistoriesByUriOptions(URIOptions uriOptions)
@@ -130,6 +134,14 @@ namespace MDG.TargetProcess
             return ObjectsConverter.GetObjects<UserStoryHistiories>(_webClient.GetResponse(uri));
         }
 
+        public UserStoryHistiories GetUserStoryHistories(DateTime startDate, DateTime endDate)
+        {
+            URIOptions uriOptions = new URIOptions();
+            uriOptions.EntityType = "UserStoryHistories";
+            uriOptions.WhereStatement = "(Date gte '" + startDate.ToString("yyyy-MM-dd") + "') and (Date lte '" + endDate.ToString("yyyy-MM-dd") + "')";
+
+            return getUserStoryHistoriesByUriOptions(uriOptions);
+        }
 
         #region Not implemented
         public void AssignDeveloper()
