@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MDG.TargetProcess.Classes.TPClasses
 {
-    public class BugHistory
+    public class BugHistory : History
     {        
         public Bug Bug { get; set; }       
     }

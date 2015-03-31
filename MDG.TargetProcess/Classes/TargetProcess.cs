@@ -26,25 +26,36 @@ namespace MDG.TargetProcess
         }
         
 
-        public Users GetUsers()
+        public Users GetUsers(bool includeInActive = false)
         {
-            return getUsersByUriOption(new URIOptions());
+            URIOptions uriOptions = new URIOptions();
+            uriOptions.EntityType = "users";
+            if (!includeInActive)
+            {
+                uriOptions.WhereStatement = "(IsActive eq 'true')";
+            }
+            return getUsersByUriOption(uriOptions.BuildUri());
         }
 
-        private Users getUsersByUriOption(URIOptions uriOptions)
-        {
-            uriOptions.EntityType = "users";
-            Uri uri = uriOptions.BuildUri();
-
+        private Users getUsersByUriOption(Uri uri)
+        {   
             return ObjectsConverter.GetObjects<Users>(_webClient.GetResponse(uri));
         }
 
-        public Users GetDevelopers()
+        public Users GetDevelopers(bool includeInActive = false)
         {
-            URIOptions uriOptions = new URIOptions();                        
-            uriOptions.WhereStatement = "(IsActive eq 'true') and (role.id eq 1)";
-
-            return getUsersByUriOption(uriOptions);
+            URIOptions uriOptions = new URIOptions();
+            uriOptions.EntityType = "users";
+            if (!includeInActive)
+            {
+                uriOptions.WhereStatement = "(role.id eq 1) and (IsActive eq 'true')";
+            }
+            else
+            { 
+                uriOptions.WhereStatement = "(role.id eq 1)";
+            }
+            
+            return getUsersByUriOption(uriOptions.BuildUri());
         }
 
         public UserStories GetUserStories()
@@ -88,7 +99,35 @@ namespace MDG.TargetProcess
 
             return ObjectsConverter.GetObjects<Bugs>(_webClient.GetResponse(uri));
         }
-        
+
+        public UserStoryHistiories GetUserStoryHistories(int userStoryID)
+        {
+            throw new NotSupportedException();
+        }
+
+        public UserStoryHistiories GetUserStoryHistories(string statusName)
+        {
+            URIOptions uriOptions = new URIOptions();
+            uriOptions.EntityType = "UserStoryHistories";
+            uriOptions.WhereStatement = "(EntityState.Name eq '" + statusName + "')";
+
+            return getUserStoryHistoriesByUriOptions(uriOptions);
+        }
+
+        public UserStoryHistiories GetUserStoryHistories(int userStoryID, string statusName)
+        {
+            throw new NotImplementedException();
+        }
+
+        private UserStoryHistiories getUserStoryHistoriesByUriOptions(URIOptions uriOptions)
+        {
+            Uri uri = uriOptions.BuildUri();
+
+            return ObjectsConverter.GetObjects<UserStoryHistiories>(_webClient.GetResponse(uri));
+        }
+
+
+        #region Not implemented
         public void AssignDeveloper()
         {
             throw new NotImplementedException();
@@ -142,7 +181,8 @@ namespace MDG.TargetProcess
         public void RemoveRequesters()
         {
             throw new NotImplementedException();
-        }
+        } 
+        #endregion
     }
 
 

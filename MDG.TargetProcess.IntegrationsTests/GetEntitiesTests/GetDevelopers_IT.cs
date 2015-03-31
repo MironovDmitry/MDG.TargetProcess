@@ -42,12 +42,25 @@ namespace MDG.TargetProcess.IntegrationsTests.GetEntitiesTests
         [Test]
         [Category("Integration tests")]
         [Category("Read data")]
-        public void GetDevelopers_CalledWithoutParameters_ReturnsActiveAndInactiveDevelopers()
+        public void GetDevelopers_CalledWithoutParameters_ReturnsActiveDevelopersOnly()
         {
             TP tp = new TP();
             tp.TPWebServiceClient = new TPWebServiceClient();
 
             Users developers = tp.GetDevelopers();
+
+            Assert.That(developers.Items, Has.All.Matches<User>(u => u.IsActive == true));
+        }
+
+        [Test]
+        [Category("Integration tests")]
+        [Category("Read data")]
+        public void GetDevelopers_CalledWithParameterIncludeInActiveSetToTrue_ReturnsActiveAndInActiveDevelopers()
+        {
+            TP tp = new TP();
+            tp.TPWebServiceClient = new TPWebServiceClient();
+
+            Users developers = tp.GetDevelopers(true);
 
             Assert.That(developers.Items, Has.Some.Matches<User>(u => u.IsActive == false));
         }

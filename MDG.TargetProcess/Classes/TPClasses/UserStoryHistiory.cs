@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MDG.TargetProcess
 {
-    public class UserStoryHistiory
+    public class UserStoryHistiory : History
     {        
         public UserStory UserStory { get; set; }        
     }
