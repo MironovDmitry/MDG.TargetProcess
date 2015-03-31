@@ -49,8 +49,8 @@
     <Compile Include="Classes\TPClasses\Bug.cs" />
     <Compile Include="Classes\TPClasses\BugHistory.cs" />
     <Compile Include="Classes\TPClasses\Company.cs" />
-    <Compile Include="Classes\TPClasses\Entity.cs" />
-    <Compile Include="Classes\TPClasses\EntityType_abstract.cs" />
+    <Compile Include="Classes\TPClasses\Entity_abstract.cs" />
+    <Compile Include="Classes\TPClasses\EntityType.cs" />
     <Compile Include="Classes\TPClasses\History_abstract.cs" />
     <Compile Include="Classes\TPClasses\Iteration abstract.cs" />
     <Compile Include="Classes\TPClasses\Iteration.cs" />
