@@ -102,7 +102,11 @@ namespace MDG.TargetProcess
 
         public UserStoryHistiories GetUserStoryHistories(int userStoryID)
         {
-            throw new NotSupportedException();
+            URIOptions uriOptions = new URIOptions();
+            uriOptions.EntityType = "UserStoryHistories";
+            uriOptions.WhereStatement = "(UserStory.Id eq " + userStoryID.ToString() + ")";
+
+            return getUserStoryHistoriesByUriOptions(uriOptions);
         }
 
         public UserStoryHistiories GetUserStoryHistories(string statusName)
