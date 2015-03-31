@@ -22,8 +22,8 @@ namespace MDG.TargetProcess
         public double EffortCompleted { get; set; }
         public double EffortToDo { get; set; }
         public double Progress { get; set; }
-        public double TimeSpent { get; set; }
-        public double TimeRemain { get; set; }
+        public double? TimeSpent { get; set; }
+        public double? TimeRemain { get; set; }
         public object PlannedStartDate { get; set; }
         public object PlannedEndDate { get; set; }
         public double InitialEstimate { get; set; }

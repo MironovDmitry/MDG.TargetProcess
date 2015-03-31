@@ -9,6 +9,7 @@ namespace MDG.TargetProcess
     public class UserStory : Entity
     {
         public List<object> CustomFields { get; set; }
+        public List<UserStoryHistiory> Histories { get; set; }
     }
 
     public class UserStories
