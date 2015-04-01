@@ -26,7 +26,6 @@ namespace MDG.TargetProcess
         public EntityType EntityType { get; set; }
         public Owner Owner { get; set; }
         public object LastCommentedUser { get; set; }        
-        public object LinkedTestPlan { get; set; }
-        public List<object> CustomFields { get; set; }
+        public object LinkedTestPlan { get; set; }        
     }
 }

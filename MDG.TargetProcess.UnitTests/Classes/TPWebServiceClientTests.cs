@@ -18,13 +18,12 @@ namespace TargetProcess.UnitTests
         [Category("WebClient Get Reponse tests")]
         public void GetResponse_WhenRequestedUsers_UriContainsString_users()
         {
-            var fakeTPWebServiceClient = Substitute.For<ITPWebServiceClient>();                                                
-            TP tp = new TP();
+            var fakeTPWebServiceClient = Substitute.For<ITPWebServiceClient>();
+            TP tp = new TP(fakeTPWebServiceClient);
             URIOptions uriOptions = new URIOptions();
             uriOptions.EntityType = "users";
             Uri uri = uriOptions.BuildUri();
-            tp.TPWebServiceClient = fakeTPWebServiceClient;
-
+            
             tp.TPWebServiceClient.GetResponse(uri);
             
             fakeTPWebServiceClient.Received().GetResponse(Arg.Is<Uri>(u => u.OriginalString.Contains("users?")));
@@ -35,13 +34,13 @@ namespace TargetProcess.UnitTests
         public void GetResponse_WhenRequestedDevelopers_UriContainsStrings_usersAndRoleIDEqualsOneAndActiveIsTrue()
         {
             var fakeTPWebServiceClient = Substitute.For<ITPWebServiceClient>();
-            TP tp = new TP();
+            TP tp = new TP(fakeTPWebServiceClient);
             URIOptions uriOptions = new URIOptions();
             uriOptions.EntityType = "users";
             uriOptions.IncludeStatement = "[id,FirstName,LastName]";
             uriOptions.WhereStatement = "(IsActive eq 'true') and (role.id eq 1)";
             Uri uri = uriOptions.BuildUri();
-            tp.TPWebServiceClient = fakeTPWebServiceClient;
+            //tp.TPWebServiceClient = fakeTPWebServiceClient;
 
             tp.TPWebServiceClient.GetResponse(uri);
             

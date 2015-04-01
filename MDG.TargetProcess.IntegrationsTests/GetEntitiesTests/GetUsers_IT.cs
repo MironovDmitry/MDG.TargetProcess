@@ -15,8 +15,8 @@ namespace MDG.TargetProcess.IntegrationsTests
         [Category("Read data")]
         public void GetUsers_CalledWithoutParameters_ReturnsMoreThanOneUser()
         {
-            TP tp = new TP();
-            tp.TPWebServiceClient = new TPWebServiceClient();
+            TP tp = new TP(new TPWebServiceClient());
+            //tp.TPWebServiceClient = new TPWebServiceClient();
             Users users = tp.GetUsers();
 
             Assert.Greater(users.Items.Count, 0);           
@@ -27,7 +27,7 @@ namespace MDG.TargetProcess.IntegrationsTests
         [Category("Read data")]
         public void GetUsers_CalledWithoutParameters_ReturnsActiveUsersOnly()
         {
-            TP tp = new TP();
+            TP tp = new TP(new TPWebServiceClient());
             tp.TPWebServiceClient = new TPWebServiceClient();
             Users users = tp.GetUsers();
                         
@@ -39,7 +39,7 @@ namespace MDG.TargetProcess.IntegrationsTests
         [Category("Read data")]
         public void GetUsers_CalledWithParameterIncludeInActiveSetToTrue_ReturnsActiveAndInactiveUsers()
         {
-            TP tp = new TP();
+            TP tp = new TP(new TPWebServiceClient());
             tp.TPWebServiceClient = new TPWebServiceClient();
             Users users = tp.GetUsers(true);
 

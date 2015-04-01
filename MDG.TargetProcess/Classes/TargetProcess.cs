@@ -13,16 +13,19 @@ namespace MDG.TargetProcess
 {
     public class TP
     {
-        private ITPWebServiceClient _webClient;
+        //private ITPWebServiceClient _webClient;
 
-        public TP()
-        {            
+        public TP(ITPWebServiceClient tpWebServiceClient)
+        {
+            TPWebServiceClient = tpWebServiceClient;
         }
 
         public ITPWebServiceClient TPWebServiceClient
         {
-            get { return _webClient;}
-            set { _webClient = value; }
+            //get { return _webClient;}
+            //set { _webClient = value; }
+            get;
+            set;
         }
         
 
@@ -39,7 +42,7 @@ namespace MDG.TargetProcess
 
         private Users getUsersByUriOption(Uri uri)
         {   
-            return ObjectsConverter.GetObjects<Users>(_webClient.GetResponse(uri));
+            return ObjectsConverter.GetObjects<Users>(this.TPWebServiceClient.GetResponse(uri));
         }
 
         public Users GetDevelopers(bool includeInActive = false)
@@ -76,7 +79,7 @@ namespace MDG.TargetProcess
             uriOptions.EntityType = "userstories";
             Uri uri = uriOptions.BuildUri();
 
-            return ObjectsConverter.GetObjects<UserStories>(_webClient.GetResponse(uri));
+            return ObjectsConverter.GetObjects<UserStories>(this.TPWebServiceClient.GetResponse(uri));
         }
 
         public Bugs GetBugs()
@@ -97,7 +100,7 @@ namespace MDG.TargetProcess
             uriOptions.EntityType = "bugs";
             Uri uri = uriOptions.BuildUri();
 
-            return ObjectsConverter.GetObjects<Bugs>(_webClient.GetResponse(uri));
+            return ObjectsConverter.GetObjects<Bugs>(this.TPWebServiceClient.GetResponse(uri));
         }
 
         public UserStoryHistiories GetUserStoryHistories(int userStoryID)
@@ -131,7 +134,7 @@ namespace MDG.TargetProcess
         {
             Uri uri = uriOptions.BuildUri();
 
-            return ObjectsConverter.GetObjects<UserStoryHistiories>(_webClient.GetResponse(uri));
+            return ObjectsConverter.GetObjects<UserStoryHistiories>(this.TPWebServiceClient.GetResponse(uri));
         }
 
         public UserStoryHistiories GetUserStoryHistories(DateTime startDate, DateTime endDate)

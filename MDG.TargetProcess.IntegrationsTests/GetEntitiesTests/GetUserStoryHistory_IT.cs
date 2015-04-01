@@ -18,7 +18,7 @@ namespace MDG.TargetProcess.IntegrationsTests.GetEntitiesTests
         [Category("Read data")]
         public void GetUserStoryHistories_CalledForStatusInProgress_ReturnsUserStoryHistoriesOnlyForStatusInProgress()
         {
-            TP tp = new TP();
+            TP tp = new TP(new TPWebServiceClient());
             tp.TPWebServiceClient = new TPWebServiceClient();
 
             UserStoryHistiories histories = tp.GetUserStoryHistories("In progress");
@@ -31,7 +31,7 @@ namespace MDG.TargetProcess.IntegrationsTests.GetEntitiesTests
         [Category("Read data")]
         public void GetUserStoryHistories_CalledForStatusPlanned_ReturnsUserStoryHistoriesOnlyForStatusPlanned()
         {
-            TP tp = new TP();
+            TP tp = new TP(new TPWebServiceClient());
             tp.TPWebServiceClient = new TPWebServiceClient();
 
             UserStoryHistiories histories = tp.GetUserStoryHistories("Planned");
@@ -44,7 +44,7 @@ namespace MDG.TargetProcess.IntegrationsTests.GetEntitiesTests
         [Category("Read data")]
         public void GetUserStoryHistories_CalledForUserStoryId15_ReturnsUserStoryHistoriesOnlyForUserStoryID15()
         {
-            TP tp = new TP();
+            TP tp = new TP(new TPWebServiceClient());
             tp.TPWebServiceClient = new TPWebServiceClient();
 
             UserStoryHistiories histories = tp.GetUserStoryHistories(15);
@@ -57,7 +57,7 @@ namespace MDG.TargetProcess.IntegrationsTests.GetEntitiesTests
         [Category("Read data")]
         public void GetUserStoryHistories_CalledForUserStoryId31390AndStatusInProgress_ReturnsUserStoryHistoriesOnlyForUserStoryID15AndStatusInProgress()
         {
-            TP tp = new TP();
+            TP tp = new TP(new TPWebServiceClient());
             tp.TPWebServiceClient = new TPWebServiceClient();
 
             UserStoryHistiories histories = tp.GetUserStoryHistories(31390,"In Progress");
@@ -71,7 +71,7 @@ namespace MDG.TargetProcess.IntegrationsTests.GetEntitiesTests
         [Category("Read data")]
         public void GetUserStoryHistories_CalledForPeriod20150326To20150327_ReturnsUserStoryHistoriesOnlyForPeriod20150326To20150327()
         {
-            TP tp = new TP();
+            TP tp = new TP(new TPWebServiceClient());
             tp.TPWebServiceClient = new TPWebServiceClient();
             DateTime startDate = new DateTime(2015, 3, 26);
             DateTime endDate = new DateTime(2015, 3, 27);
@@ -89,7 +89,7 @@ namespace MDG.TargetProcess.IntegrationsTests.GetEntitiesTests
         [Category("Read data")]
         public void GetUserStoryHistories_CalledForUserStoryID31390AndPeriod20150326To20150327_ReturnsUserStoryHistoriesOnlyForUserStoryID31390And20150327()
         {
-            TP tp = new TP();
+            TP tp = new TP(new TPWebServiceClient());
             tp.TPWebServiceClient = new TPWebServiceClient();
             DateTime startDate = new DateTime(2015, 3, 26);
             DateTime endDate = new DateTime(2015, 3, 27);
@@ -107,7 +107,7 @@ namespace MDG.TargetProcess.IntegrationsTests.GetEntitiesTests
         [Category("Read data")]
         public void GetUserStoryHistories_CalledForUserStoryID31390AndPeriod20150326To20150327AndStatusUAT_ReturnsUserStoryHistoriesOnlyForUserStoryID31390And20150327AndStatusUAT()
         {
-            TP tp = new TP();
+            TP tp = new TP(new TPWebServiceClient());
             tp.TPWebServiceClient = new TPWebServiceClient();
             DateTime startDate = new DateTime(2015, 3, 26);
             DateTime endDate = new DateTime(2015, 3, 27);

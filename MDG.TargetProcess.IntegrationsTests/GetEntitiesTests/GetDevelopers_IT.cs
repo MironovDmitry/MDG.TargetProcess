@@ -18,7 +18,7 @@ namespace MDG.TargetProcess.IntegrationsTests.GetEntitiesTests
         [Category("Read data")]
         public void GetDevelopers_CalledWithoutParameters_ReturnsMoreThanOneDeveloper()
         {
-            TP tp = new TP();
+            TP tp = new TP(new TPWebServiceClient());
             tp.TPWebServiceClient = new TPWebServiceClient();
 
             Users developers = tp.GetDevelopers();
@@ -31,7 +31,7 @@ namespace MDG.TargetProcess.IntegrationsTests.GetEntitiesTests
         [Category("Read data")]
         public void GetDevelopers_CalledWithoutParameters_ReturnsDevelopersOnly()
         {
-            TP tp = new TP();
+            TP tp = new TP(new TPWebServiceClient());
             tp.TPWebServiceClient = new TPWebServiceClient();
 
             Users developers = tp.GetDevelopers();
@@ -44,7 +44,7 @@ namespace MDG.TargetProcess.IntegrationsTests.GetEntitiesTests
         [Category("Read data")]
         public void GetDevelopers_CalledWithoutParameters_ReturnsActiveDevelopersOnly()
         {
-            TP tp = new TP();
+            TP tp = new TP(new TPWebServiceClient());
             tp.TPWebServiceClient = new TPWebServiceClient();
 
             Users developers = tp.GetDevelopers();
@@ -57,7 +57,7 @@ namespace MDG.TargetProcess.IntegrationsTests.GetEntitiesTests
         [Category("Read data")]
         public void GetDevelopers_CalledWithParameterIncludeInActiveSetToTrue_ReturnsActiveAndInActiveDevelopers()
         {
-            TP tp = new TP();
+            TP tp = new TP(new TPWebServiceClient());
             tp.TPWebServiceClient = new TPWebServiceClient();
 
             Users developers = tp.GetDevelopers(true);
