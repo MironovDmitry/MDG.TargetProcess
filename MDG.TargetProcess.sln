@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDG.TargetProcess.UnitTests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDG.TargetProcess.IntegrationsTests", "MDG.TargetProcess.IntegrationsTests\MDG.TargetProcess.IntegrationsTests.csproj", "{F17E8C28-3301-4CCB-9254-7A34F4FB7EFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDG.TargetProcess.Specs", "MDG.TArgetProcess.Specs\MDG.TargetProcess.Specs.csproj", "{D41EDD30-76F7-48A2-83DF-A765044CB508}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F17E8C28-3301-4CCB-9254-7A34F4FB7EFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F17E8C28-3301-4CCB-9254-7A34F4FB7EFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F17E8C28-3301-4CCB-9254-7A34F4FB7EFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D41EDD30-76F7-48A2-83DF-A765044CB508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D41EDD30-76F7-48A2-83DF-A765044CB508}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D41EDD30-76F7-48A2-83DF-A765044CB508}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D41EDD30-76F7-48A2-83DF-A765044CB508}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
